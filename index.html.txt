@@ -1,3 +1,7 @@
-<centering>
- <img src="http://www.aponia-dental-center.com/wp-content/uploads/2014/01/work-in-progress.png"> </img>
-</centering>
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Hello World</h1>
+<p>I'm hosted with GitHub Pages.</p>
+</body>
+</html>
