@@ -1,21 +1,25 @@
 "use strict"
 var counter=0;
+var memory=NaN;
 const writeList = () => {
     const text = String(document.getElementById("newTask").value);
     //Sprawdzic czemu to tak dziala
-    if(! isNaN(text)){
+    if(!isNaN(text)){
         console.log("Nie można dodać pustego zadania!");
         return
     }
-    const task = document.createElement("task");
     counter++;
-    task.innerHTML = '<div onclick= "done(this, '+ counter + ')"> <div id="task-name-'+ counter + '" class= "normal">' + text + '</div> </div>';
+    const task = document.createElement("task"+counter);
+    const deleteButton = document.createElement("delete-button"+counter);
+    deleteButton.innerHTML = '<button id="delete-button'+counter+'" onclick= "deleteTask(task'+counter+')" class="delButton">X</button>'
+    task.innerHTML = '<div id="task'+counter+'" onclick= "done(this, '+ counter + ')" class= "normal"><li> <div id="task-name-'+ counter + '" class= "normal">' + text + " " + '</div>'+deleteButton.innerHTML+'</li></div>';
     task.value = text;
     const ourList = document.getElementById("task-list");
     ourList.append(task);
 }
 const done = (elmnt,number) => {
-    const task= document.getElementById("task-name-"+number);
+    if(!isNaN(elmnt)){
+        const task= document.getElementById("task-name-"+number);
     if (task.className === "normal"){
         task.className = "striked";
         let date = null;
@@ -36,5 +40,21 @@ const done = (elmnt,number) => {
         task.className = "normal";
         const today = document.getElementById("taskDate"+number);
         today.parentNode.removeChild(today);
+    }
+    }
+}
+const deleteTask = (id) => {
+    memory=$(id);
+    $(id).remove();
+    console.log($(memory));
+}
+const unDo = () => {
+    if (!isNaN($(memory))){
+        console.log("Nie ma co cofnąć.");
+        return
+    }
+    else{
+        $("#task-list").append(memory);
+        memory=$(NaN);
     }
 }
