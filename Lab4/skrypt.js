@@ -13,10 +13,12 @@ const TitleTinder = () =>{
     return <h1>Tinder do projektów</h1>
 }
 const WorkerItem = (props) =>{
+    const tagListRender=props.tagi.join(", ")
     return(
     <li className="list-group-item">
         <div><p>{props.text.name} ({props.text.mail})</p></div>
         <div>{props.text.description}</div>
+        <div>Tagi: {tagListRender}</div>
     </li>)
 }
 const WorkerForm = (props) =>{
@@ -63,27 +65,33 @@ const WorkerForm = (props) =>{
 }
 class WorkerList extends React.Component{
     state ={
+        fullTagList:["Python","Java","HTML","C#"],
         workerList:[ {name:"Maciej Błoński",
         mail:"maciej.blonski@cosiek.pl",
-        description:"Programista z 5 letnim doświadczeniem"
+        description:"Programista z 5 letnim doświadczeniem",
+        tagi:["Pyhton"]
         },
         {name:"Kamil Szewczyk",
         mail:"kamil.szewczyk@cosiek.pl",
-        description:"Programista z 10 letnim doświadczeniem"
+        description:"Programista z 10 letnim doświadczeniem",
+        tagi:["Java", "HTML"]
         },
         {name:"Stanisław Kozłowski",
         mail:"stanislaw.kozlowski@cosiek.pl",
-        description:"Programista z 8 letnim doświadczeniem"
+        description:"Programista z 8 letnim doświadczeniem",
+        tagi:["Java", "HTML","C#"]
         },
         {name:"Kasia Kowalska",
         mail:"kasia.kowalska@cosiek.pl",
-        description:"Programistka z 10 letnim doświadczeniem"
+        description:"Programistka z 10 letnim doświadczeniem",
+        tagi:["HTML", "Java","C#"]
         },
         ],
         newWorker:{
             name:"",
             mail:"",
-            description:""
+            description:"",
+            tagi:[]
         },
         showWarning1: false,
         showWarning2: false
@@ -140,7 +148,7 @@ class WorkerList extends React.Component{
     }
     render() {
         const listRender=this.state.workerList.map((it) => (
-            <WorkerItem key={hashCode(it.mail)} text={it}/>
+            <WorkerItem key={hashCode(it.mail)} text={it} tagi={it.tagi}/>
         ))
         return (
             <>
