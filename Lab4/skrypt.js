@@ -10,7 +10,7 @@ function hashCode(str){
     return hash;
 }
 const TitleTinder = () =>{
-    return <h1>Tinder do projektów</h1>
+    return <div class="container-sm"><h1>Tinder do projektów</h1></div>
 }
 const WorkerItem = (props) =>{
     if(props.visible){
@@ -28,6 +28,7 @@ const WorkerForm = (props) =>{
     const {valName, valMail, valDescription, funcOnChange, funcOnClick} = props
     return(
         <>
+        <div class="container-sm">
             <div className="form-row">
                 <div className="form-group col-md-6">
                 <label htmlFor="newWorkerName">Imie i nazwisko studenta:</label>
@@ -63,12 +64,14 @@ const WorkerForm = (props) =>{
                 </input>
             </div>
             <button className="btn btn-primary"  onClick={funcOnClick}>Utwórz nowego studenta</button>
+            </div>
         </>
     )
 }
 const WorkerSearch = (props) =>{
     const {valSearchName, valSearchMail, funcOnChange} = props
     return(<>
+    <div class="container-sm">
     <input type="text" 
                 className="form-control"
                 name="searchName" 
@@ -87,6 +90,7 @@ const WorkerSearch = (props) =>{
         onChange={funcOnChange}
        >
     </input>
+    </div>
     </>)
 }
 class WorkerList extends React.Component{
@@ -226,7 +230,8 @@ class WorkerList extends React.Component{
             />
             {this.state.showWarning1 && <h1 style={{color:"red"}}>{this.errorInput1}</h1>}
             {this.state.showWarning2 && <h1 style={{color:"red"}}>{this.errorInput2}</h1>}
-            <ul>{listRender}</ul>
+            <br></br>
+            <div class="container-sm"><ul>{listRender}</ul></div>
             </>
         );
     }
