@@ -1,0 +1,2 @@
+cd C:\Users\maciek\Documents\GitHub\PIW_248907
+python3 -m http.server
